@@ -1,0 +1,95 @@
+<?php
+$data = array (
+  0 => 
+  array (
+    'brand_id' => '79',
+    'brand_name' => 'justyle',
+    'brand_logo' => 'data/brandlogo/1490072677495061584.jpg',
+    'index_img' => 'data/indeximg/1490048046384195778.jpg',
+    'brand_desc' => '',
+    'goods_num' => '1',
+    'tag' => '1',
+    'site_url' => 'http://',
+    'url' => 'brand.php?id=79&amp;cat=630',
+    'is_collect' => '',
+  ),
+  1 => 
+  array (
+    'brand_id' => '89',
+    'brand_name' => '健安喜',
+    'brand_logo' => 'data/brandlogo/1490072804442637685.jpg',
+    'index_img' => 'data/indeximg/1490047047523828142.jpg',
+    'brand_desc' => '',
+    'goods_num' => '1',
+    'tag' => '1',
+    'site_url' => 'http://',
+    'url' => 'brand.php?id=89&amp;cat=630',
+    'is_collect' => '',
+  ),
+  2 => 
+  array (
+    'brand_id' => '91',
+    'brand_name' => '金奥力',
+    'brand_logo' => 'data/brandlogo/1490072823106532144.jpg',
+    'index_img' => 'data/indeximg/1490046798791290895.jpg',
+    'brand_desc' => '',
+    'goods_num' => '1',
+    'tag' => '1',
+    'site_url' => 'http://',
+    'url' => 'brand.php?id=91&amp;cat=630',
+    'is_collect' => '',
+  ),
+  3 => 
+  array (
+    'brand_id' => '151',
+    'brand_name' => '姬芮',
+    'brand_logo' => 'data/brandlogo/1490073561018734078.jpg',
+    'index_img' => '',
+    'brand_desc' => '',
+    'goods_num' => '2',
+    'tag' => '1',
+    'site_url' => 'http://',
+    'url' => 'brand.php?id=151&amp;cat=630',
+    'is_collect' => '',
+  ),
+  4 => 
+  array (
+    'brand_id' => '152',
+    'brand_name' => '杰克琼斯',
+    'brand_logo' => 'data/brandlogo/1490228100138579787.jpg',
+    'index_img' => 'data/indeximg/1490036369827611872.jpg',
+    'brand_desc' => '',
+    'goods_num' => '1',
+    'tag' => '1',
+    'site_url' => 'http://',
+    'url' => 'brand.php?id=152&amp;cat=630',
+    'is_collect' => '',
+  ),
+  5 => 
+  array (
+    'brand_id' => '160',
+    'brand_name' => '美的',
+    'brand_logo' => 'data/brandlogo/1490074901892372216.jpg',
+    'index_img' => '',
+    'brand_desc' => '',
+    'goods_num' => '1',
+    'tag' => '1',
+    'site_url' => 'http://',
+    'url' => 'brand.php?id=160&amp;cat=630',
+    'is_collect' => '',
+  ),
+  6 => 
+  array (
+    'brand_id' => '189',
+    'brand_name' => '佳沪数码-华为',
+    'brand_logo' => 'data/brandlogo/1490171981556005380.jpg',
+    'index_img' => '',
+    'brand_desc' => '',
+    'goods_num' => '1',
+    'tag' => '1',
+    'site_url' => 'http://',
+    'url' => 'brand.php?id=189&amp;cat=630',
+    'is_collect' => '',
+  ),
+);
+?>

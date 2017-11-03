@@ -1,0 +1,42 @@
+[ 2017-10-25T15:13:10+08:00 ] 127.0.0.1 /mobile/index.php?m=admin&c=database
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+NOTIC: [2] PDO::__construct(): MySQL server has gone away /Users/wangpengcheng/php/ecmoban/mobile/vendor/topthink/framework/Library/Think/Db/Driver.class.php 第 103 行.
+NOTIC: [2] PDO::__construct(): Error while reading greeting packet. PID=751 /Users/wangpengcheng/php/ecmoban/mobile/vendor/topthink/framework/Library/Think/Db/Driver.class.php 第 103 行.
+ERR: SQLSTATE[HY000] [2006] MySQL server has gone away
+
+[ 2017-10-25T15:13:15+08:00 ] 127.0.0.1 /mobile/index.php?m=admin&c=database
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+NOTIC: [2] PDO::__construct(): MySQL server has gone away /Users/wangpengcheng/php/ecmoban/mobile/vendor/topthink/framework/Library/Think/Db/Driver.class.php 第 103 行.
+NOTIC: [2] PDO::__construct(): Error while reading greeting packet. PID=748 /Users/wangpengcheng/php/ecmoban/mobile/vendor/topthink/framework/Library/Think/Db/Driver.class.php 第 103 行.
+ERR: SQLSTATE[HY000] [2006] MySQL server has gone away
+
+[ 2017-10-25T15:13:18+08:00 ] 127.0.0.1 /mobile/index.php?m=admin&c=database
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+NOTIC: [2] PDO::__construct(): MySQL server has gone away /Users/wangpengcheng/php/ecmoban/mobile/vendor/topthink/framework/Library/Think/Db/Driver.class.php 第 103 行.
+NOTIC: [2] PDO::__construct(): Error while reading greeting packet. PID=752 /Users/wangpengcheng/php/ecmoban/mobile/vendor/topthink/framework/Library/Think/Db/Driver.class.php 第 103 行.
+ERR: SQLSTATE[HY000] [2006] MySQL server has gone away
+
+[ 2017-10-25T15:16:26+08:00 ] 127.0.0.1 /mobile/index.php?m=admin&c=database
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+NOTIC: [2] PDO::__construct(): MySQL server has gone away /Users/wangpengcheng/php/ecmoban/mobile/vendor/topthink/framework/Library/Think/Db/Driver.class.php 第 103 行.
+NOTIC: [2] PDO::__construct(): Error while reading greeting packet. PID=748 /Users/wangpengcheng/php/ecmoban/mobile/vendor/topthink/framework/Library/Think/Db/Driver.class.php 第 103 行.
+ERR: SQLSTATE[HY000] [2006] MySQL server has gone away
+
+[ 2017-10-25T15:16:28+08:00 ] 127.0.0.1 /mobile/index.php?m=admin&c=database
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+NOTIC: [2] PDO::__construct(): MySQL server has gone away /Users/wangpengcheng/php/ecmoban/mobile/vendor/topthink/framework/Library/Think/Db/Driver.class.php 第 103 行.
+NOTIC: [2] PDO::__construct(): Error while reading greeting packet. PID=752 /Users/wangpengcheng/php/ecmoban/mobile/vendor/topthink/framework/Library/Think/Db/Driver.class.php 第 103 行.
+ERR: SQLSTATE[HY000] [2006] MySQL server has gone away
+
+[ 2017-10-25T15:16:29+08:00 ] 127.0.0.1 /mobile/index.php?m=admin&c=database
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000058s ]
+NOTIC: [2] PDO::__construct(): MySQL server has gone away /Users/wangpengcheng/php/ecmoban/mobile/vendor/topthink/framework/Library/Think/Db/Driver.class.php 第 103 行.
+NOTIC: [2] PDO::__construct(): Error while reading greeting packet. PID=1003 /Users/wangpengcheng/php/ecmoban/mobile/vendor/topthink/framework/Library/Think/Db/Driver.class.php 第 103 行.
+ERR: SQLSTATE[HY000] [2006] MySQL server has gone away
+

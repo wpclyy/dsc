@@ -1,0 +1,71 @@
+<?php
+//zend by QQ:2172298892  瑾梦网络  禁止倒卖 一经发现停止任何服务
+namespace App\Repositories\User;
+
+class UserRepository implements \App\Contracts\Repository\User\UserRepositoryInterface
+{
+	public function userInfo($uid)
+	{
+		$user = \App\Models\User::where('user_id', $uid)->select('user_id as id', 'user_name', 'nick_name', 'sex', 'birthday', 'user_money', 'frozen_money', 'pay_points', 'rank_points', 'address_id', 'qq', 'mobile_phone', 'user_picture')->first();
+
+		if ($user === null) {
+			return array();
+		}
+
+		return $user->toArray();
+	}
+
+	public function renewUser($res)
+	{
+		$model = new \App\Models\User();
+		$model = \App\Models\User::where('user_id', $res['user_id'])->first();
+
+		if ($model === null) {
+			return array();
+		}
+
+		$model->fill($res);
+		return $model->save();
+	}
+
+	public function getConnectUser($unionid)
+	{
+		$connectUser = \App\Models\User::select('users.user_id')->leftjoin('connect_user', 'connect_user.user_id', '=', 'users.user_id')->where('connect_user.open_id', $unionid)->first();
+
+		if ($connectUser === null) {
+			return array();
+		}
+
+		return $connectUser->toArray();
+	}
+
+	public function addConnectUser($res)
+	{
+		$model = new \App\Models\ConnectUser();
+		$model->fill($res);
+		$model->save();
+		return $model->id;
+	}
+
+	public function updateConnnectUser($res)
+	{
+		$model = new \App\Models\ConnectUser();
+		$model = \App\Models\ConnectUser::where('open_id', $res['open_id'])->first();
+
+		if ($model === null) {
+			return array();
+		}
+
+		$model->fill($res);
+		return $model->save();
+	}
+
+	public function setDefaultAddress($id, $uid)
+	{
+		$model = \App\Models\User::where('user_id', $uid)->first();
+		$model->address_id = $id;
+		return $model->save();
+	}
+}
+
+?>
