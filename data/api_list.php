@@ -66,7 +66,8 @@ $api_data = array(
             array('name' => '获取单条商品运费模板信息', 'val' => 'dsc.goods.freight.info.get'),
             array('name' => '插入商品运费模板信息', 'val' => 'dsc.goods.freight.insert.post'),
             array('name' => '更新商品运费模板信息', 'val' => 'dsc.goods.freight.update.post'),
-            array('name' => '删除商品运费模板信息', 'val' => 'dsc.goods.freight.del.post')
+            array('name' => '删除商品运费模板信息', 'val' => 'dsc.goods.freight.del.post'),
+            array('name' => '添加商品图片', 'val' => 'dsc.goods.image.insert.post')
         )
     ),
     array(
