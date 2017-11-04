@@ -1,5 +1,4 @@
 <?php
-
 namespace app\func;
 
 class common {
