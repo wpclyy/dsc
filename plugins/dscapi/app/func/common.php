@@ -12,6 +12,7 @@ class common {
     static private $msg;
     static private $error;
     static private $allowOutputType = array('xml' => 'application/xml', 'json' => 'application/json', 'html' => 'text/html');
+    static private $id;
 
     public function __construct($data = array()) {
         self::common($data);
@@ -24,6 +25,7 @@ class common {
         self::$msg = (isset($data['msg']) ? $data['msg'] : '');
         self::$result = (isset($data['result']) ? $data['result'] : 'success');
         self::$error = (isset($data['error']) ? $data['error'] : 0);
+        self::$id = (isset($data['id']) ? $data['id'] : 0);
     }
 
     static public function data_back($info = array(), $arr_type = 0) {
@@ -32,7 +34,7 @@ class common {
             $info = $list;
         }
 
-        $data_arr = array('result' => self::$result, 'error' => self::$error, 'msg' => self::$msg);
+        $data_arr = array('result' => self::$result,'id'=> self::$id, 'error' => self::$error, 'msg' => self::$msg);
 
         if ($info) {
             $data_arr['info'] = $info;
