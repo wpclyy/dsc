@@ -221,6 +221,10 @@ abstract class goodsModel extends \app\func\common {
         $goods = \app\func\common::data_back($goods);
         return $goods;
     }
+    
+    public function get_image_post() {
+        return parent::get_image_post();
+    }
 
 }
 
