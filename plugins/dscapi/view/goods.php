@@ -208,7 +208,8 @@ switch ($method) {
         exit($result);
         break;
     case 'dsc.goods.image.insert.post':
-        exit("image");
+        $result = $goods->get_goods_image_post();
+        exit($result);
         break;
     default:
         echo '非法接口连接';
