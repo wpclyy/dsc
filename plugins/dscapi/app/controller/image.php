@@ -463,7 +463,7 @@ class image extends \app\model\imageModel {
         $filename = '';
 
         while (empty($filename)) {
-            $filename = cls_image::random_filename();
+            $filename = image::random_filename();
             if (file_exists($dir . $filename . '.jpg') || file_exists($dir . $filename . '.gif') || file_exists($dir . $filename . '.png')) {
                 $filename = '';
             }
