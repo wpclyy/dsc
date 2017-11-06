@@ -286,8 +286,4 @@ class goods extends \app\model\goodsModel {
         return \app\model\goodsModel::get_more_delete($this->table, $this->where, $this->format);
     }
 
-    public function get_goods_image_post() {
-       return \app\model\goodsModel::get_image_post();
-    }
-
 }
