@@ -287,7 +287,7 @@ class goods extends \app\model\goodsModel {
     }
 
     public function get_goods_image_post() {
-        include_once ROOT_PATH . '/includes/cls_image.php';
+        include_once '/includes/cls_image.php';
         $image = new cls_image($_CFG['bgcolor']);
         require_once ROOT_PATH . '/' . ADMIN_PATH . '/includes/lib_goods.php';
         $act_type = (empty($_REQUEST['type']) ? '' : trim($_REQUEST['type']));
