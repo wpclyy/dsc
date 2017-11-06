@@ -207,7 +207,9 @@ switch ($method) {
         $result = $goods->get_goods_freight_delete($table);
         exit($result);
         break;
-
+    case 'dsc.goods.image.insert.post':
+        exit("image");
+        break;
     default:
         echo '非法接口连接';
         break;
