@@ -243,12 +243,11 @@ switch ($method) {
             $original_img = '';
             $old_original_img = '';
             if (($_FILES['goods_img']['tmp_name'] != '') && ($_FILES['goods_img']['tmp_name'] != 'none')) {
+
                 if (empty($is_url_goods_img)) {
                     $original_img = $image->upload_image($_FILES['goods_img'], array('type' => 1));
                 }
-
                 $goods_img = $original_img;
-
                 if ($_CFG['auto_generate_gallery']) {
                     $img = $original_img;
                     $pos = strpos(basename($img), '.');
@@ -283,7 +282,6 @@ switch ($method) {
                             }
                         }
                     }
-
                     if ($_CFG['auto_generate_gallery']) {
                         if (($_CFG['thumb_width'] != 0) || ($_CFG['thumb_height'] != 0)) {
                             $gallery_thumb = $image->make_thumb(array('img' => $img, 'type' => 1), $GLOBALS['_CFG']['thumb_width'], $GLOBALS['_CFG']['thumb_height']);
@@ -291,7 +289,6 @@ switch ($method) {
                     }
                 }
             }
-
             if (isset($_FILES['goods_thumb']) && ($_FILES['goods_thumb']['tmp_name'] != '') && isset($_FILES['goods_thumb']['tmp_name']) && ($_FILES['goods_thumb']['tmp_name'] != 'none')) {
                 $goods_thumb = $image->upload_image($_FILES['goods_thumb'], array('type' => 1));
             } else {
@@ -312,11 +309,9 @@ switch ($method) {
             if (empty($goods_id)) {
                 $_SESSION['goods'][$admin_id][$goods_id] = $result['data'];
             } else {
-                get_del_edit_goods_img($goods_id);
+//                get_del_edit_goods_img($goods_id);
                 $db->autoExecute($ecs->table('goods'), $result['data'], 'UPDATE', 'goods_id = \'' . $goods_id . '\'');
             }
-
-            get_oss_add_file($result['data']);
 
             if ($img) {
                 if (empty($is_url_goods_img)) {
@@ -333,7 +328,6 @@ switch ($method) {
                 $sql = 'INSERT INTO ' . $ecs->table('goods_gallery') . ' (goods_id, img_url, img_desc, thumb_url, img_original) ' . 'VALUES (\'' . $goods_id . '\', \'' . $gallery_img . '\', ' . $img_desc . ', \'' . $gallery_thumb . '\', \'' . $img . '\')';
                 $db->query($sql);
                 $thumb_img_id[] = $GLOBALS['db']->insert_id();
-                get_oss_add_file(array($gallery_img, $gallery_thumb, $img));
 
                 if (!empty($_SESSION['thumb_img_id' . $_SESSION['admin_id']])) {
                     $_SESSION['thumb_img_id' . $_SESSION['admin_id']] = array_merge($thumb_img_id, $_SESSION['thumb_img_id' . $_SESSION['admin_id']]);
@@ -348,100 +342,7 @@ switch ($method) {
             $goods_img = get_image_path($goods_id, $goods_img, true);
             $pic_url = $goods_img;
             $upload_status = 1;
-        } else if ($act_type == 'gallery_img') {
-            $_FILES['img_url'] = array(
-                'name' => array($_FILES['file']['name']),
-                'type' => array($_FILES['file']['type']),
-                'tmp_name' => array($_FILES['file']['tmp_name']),
-                'error' => array($_FILES['file']['error']),
-                'size' => array($_FILES['file']['size'])
-            );
-            $_REQUEST['goods_id_img'] = $id;
-            $_REQUEST['img_desc'] = array(
-                array('')
-            );
-            $_REQUEST['img_file'] = array(
-                array('')
-            );
-            $goods_id = (!empty($_REQUEST['goods_id_img']) ? intval($_REQUEST['goods_id_img']) : 0);
-            $img_desc = (!empty($_REQUEST['img_desc']) ? $_REQUEST['img_desc'] : array());
-            $img_file = (!empty($_REQUEST['img_file']) ? $_REQUEST['img_file'] : array());
-            $php_maxsize = ini_get('upload_max_filesize');
-            $htm_maxsize = '2M';
-
-            if ($_FILES['img_url']) {
-                foreach ($_FILES['img_url']['error'] as $key => $value) {
-                    if ($value == 0) {
-                        if (!$image->check_img_type($_FILES['img_url']['type'][$key])) {
-                            $result['error'] = '1';
-                            $result['massege'] = sprintf($_LANG['invalid_img_url'], $key + 1);
-                        } else {
-                            $goods_pre = 1;
-                        }
-                    } else if ($value == 1) {
-                        $result['error'] = '1';
-                        $result['massege'] = sprintf($_LANG['img_url_too_big'], $key + 1, $php_maxsize);
-                    } else if ($_FILES['img_url']['error'] == 2) {
-                        $result['error'] = '1';
-                        $result['massege'] = sprintf($_LANG['img_url_too_big'], $key + 1, $htm_maxsize);
-                    }
-                }
-            }
-
-            $gallery_count = get_goods_gallery_count($goods_id);
-            $result['img_desc'] = $gallery_count + 1;
-            handle_gallery_image_add($goods_id, $_FILES['img_url'], $img_desc, $img_file, '', '', 'ajax', $result['img_desc']);
-            clear_cache_files();
-
-            if (0 < $goods_id) {
-                $sql = 'SELECT * FROM ' . $ecs->table('goods_gallery') . ' WHERE goods_id = \'' . $goods_id . '\' ORDER BY img_desc ASC';
-            } else {
-                $img_id = $_SESSION['thumb_img_id' . $_SESSION['admin_id']];
-                $where = '';
-
-                if ($img_id) {
-                    $where = 'AND img_id ' . db_create_in($img_id) . '';
-                }
-
-                $sql = 'SELECT * FROM ' . $ecs->table('goods_gallery') . ' WHERE goods_id=\'\' ' . $where . ' ORDER BY img_desc ASC';
-            }
-
-            $img_list = $db->getAll($sql);
-            if (isset($GLOBALS['shop_id']) && (0 < $GLOBALS['shop_id'])) {
-                foreach ($img_list as $key => $gallery_img) {
-                    $gallery_img['img_original'] = get_image_path($gallery_img['goods_id'], $gallery_img['img_original'], true);
-                    $img_list[$key]['img_url'] = $gallery_img['img_original'];
-                    $gallery_img['thumb_url'] = get_image_path($gallery_img['goods_id'], $gallery_img['thumb_url'], true);
-                    $img_list[$key]['thumb_url'] = $gallery_img['thumb_url'];
-                }
-            } else {
-                foreach ($img_list as $key => $gallery_img) {
-                    $gallery_img['thumb_url'] = get_image_path($gallery_img['goods_id'], $gallery_img['thumb_url'], true);
-                    $img_list[$key]['thumb_url'] = $gallery_img['thumb_url'];
-                }
-            }
-
-            $goods['goods_id'] = $goods_id;
-            $smarty->assign('img_list', $img_list);
-            $img_desc = array();
-
-            foreach ($img_list as $k => $v) {
-                $img_desc[] = $v['img_desc'];
-            }
-
-            $img_default = min($img_desc);
-            $min_img_id = $db->getOne(' SELECT img_id   FROM ' . $ecs->table('goods_gallery') . ' WHERE goods_id = \'' . $goods_id . '\' AND img_desc = \'' . $img_default . '\' ORDER BY img_desc   LIMIT 1');
-            $smarty->assign('goods', $goods);
-            $this_img_info = $GLOBALS['db']->getRow(' SELECT * FROM ' . $GLOBALS['ecs']->table('goods_gallery') . ' WHERE goods_id = \'' . $goods_id . '\' ORDER BY img_id DESC LIMIT 1 ');
-            $result['img_id'] = $this_img_info['img_id'];
-            $result['min_img_id'] = $min_img_id;
-            $pic_name = '';
-            $this_img_info['thumb_url'] = get_image_path($goods_id, $this_img_info['thumb_url'], true);
-            $pic_url = $this_img_info['thumb_url'];
-            $upload_status = 1;
-            $result['external_url'] = '';
         }
-
         if ($upload_status) {
             $result['error'] = 0;
             $result['pic'] = $pic_url;
@@ -449,7 +350,6 @@ switch ($method) {
         } else {
             $result['error'] = '上传有误，清检查服务器配置！';
         }
-
         exit(json_encode($result));
         break;
     default:
