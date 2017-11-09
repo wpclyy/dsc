@@ -64,11 +64,9 @@ if (in_array($method, $goods_action)) {
     $file_type = 'category';
 } else if (in_array($method, $brand_action)) {
     $file_type = 'brand';
-}else if (in_array($method, $brand_action)) {
+} else if (in_array($method, $brand_action)) {
     $file_type = 'products';
-} 
-
-else {
+} else {
     exit('非法入口');
 }
 
