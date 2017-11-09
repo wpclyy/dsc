@@ -57,16 +57,16 @@ abstract class attributeModel extends \app\func\common {
     }
 
     public function get_insert($table, $select, $format) {
-        $attributeLang = \languages\attributeLang::lang_region_insert();
+        $attributeLang = \languages\attributeLang::lang_attribute_insert();
         $GLOBALS['db']->autoExecute($GLOBALS['ecs']->table($table), $select, 'INSERT');
         $id = $GLOBALS['db']->insert_id();
-        $common_data = array('result' => empty($id) ? 'failure' : 'success', 'id' => $id, 'msg' => empty($id) ? $attributeLang['msg_failure']['failure'] : $attributeLang['msg_success']['success'], 'error' => empty($id) ? $attributeLang['msg_failure']['error'] : $attributeLang['msg_success']['error'], 'format' => $format);
+        $common_data = array('result' => empty($id) ? 'failure' : 'success','id'=>$id, 'msg' => empty($id) ? $attributeLang['msg_failure']['failure'] : $attributeLang['msg_success']['success'], 'error' => empty($id) ? $attributeLang['msg_failure']['error'] : $attributeLang['msg_success']['error'], 'format' => $format);
         \app\func\common::common($common_data);
         return \app\func\common::data_back();
     }
 
     public function get_update($table, $select, $where, $format) {
-        $attributeLang = \languages\attributeLang::lang_region_update();
+        $attributeLang = \languages\attributeLang::lang_attribute_update();
 
         if (strlen($where) != 1) {
             $info = $this->get_select_info($table, '*', $where);
@@ -86,7 +86,7 @@ abstract class attributeModel extends \app\func\common {
     }
 
     public function get_delete($table, $where, $format) {
-        $attributeLang = userLang::lang_region_delete();
+        $attributeLang = userLang::lang_attribute_delete();
 
         if (strlen($where) != 1) {
             $sql = 'DELETE FROM ' . $GLOBALS['ecs']->table($table) . ' WHERE ' . $where;
