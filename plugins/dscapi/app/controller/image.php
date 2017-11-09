@@ -30,10 +30,9 @@ class image extends \app\model\imageModel {
             $dir = (isset($dir['dir']) ? $dir['dir'] : '');
         }
 
-        $admin_id = get_admin_id();
+        $admin_id = 0;
         $admin_dir = date('Ym');
         $admin_dir = ROOT_PATH . $this->images_dir . '/' . $admin_dir . '/' . 'admin_' . $admin_id;
-
         if (!file_exists($admin_dir)) {
             make_dir($admin_dir);
         }
@@ -67,7 +66,6 @@ class image extends \app\model\imageModel {
                 return false;
             }
         }
-
         if (isset($upload['name']) && !empty($upload['name']) && empty($img_name)) {
             $img_name = $this->unique_name($dir);
             $img_name = $dir . $img_name . $this->get_filetype($upload['name']);
@@ -80,7 +78,6 @@ class image extends \app\model\imageModel {
                 return false;
             }
         }
-
         $allow_file_types = '|GIF|JPG|JEPG|PNG|BMP|SWF|';
         if (isset($upload['tmp_name']) && !empty($upload['tmp_name'])) {
             if (!check_file_type($upload['tmp_name'], $img_name, $allow_file_types)) {
@@ -114,7 +111,7 @@ class image extends \app\model\imageModel {
 
         if ($gd == 0) {
             $this->error_msg = $GLOBALS['_LANG']['missing_gd'];
-            return false;
+            return "1";
         }
 
         if (($thumb_width == 0) && ($thumb_height == 0)) {
@@ -126,13 +123,13 @@ class image extends \app\model\imageModel {
         if (!$org_info) {
             $this->error_msg = sprintf($GLOBALS['_LANG']['missing_orgin_image'], $img);
             $this->error_no = ERR_IMAGE_NOT_EXISTS;
-            return false;
+            return "2";
         }
 
         if (!$this->check_img_function($org_info[2])) {
             $this->error_msg = sprintf($GLOBALS['_LANG']['nonsupport_type'], $this->type_maping[$org_info[2]]);
             $this->error_no = ERR_NO_GD;
-            return false;
+            return "3";
         }
 
         $img_org = $this->img_resource($img, $org_info[2]);
@@ -196,7 +193,7 @@ class image extends \app\model\imageModel {
             if (!make_dir($dir)) {
                 $this->error_msg = sprintf($GLOBALS['_LANG']['directory_readonly'], $dir);
                 $this->error_no = ERR_DIRECTORY_READONLY;
-                return false;
+                return "4";
             }
         }
 
@@ -215,7 +212,7 @@ class image extends \app\model\imageModel {
             } else {
                 $this->error_msg = $GLOBALS['_LANG']['creating_failure'];
                 $this->error_no = ERR_NO_GD;
-                return false;
+                return "5";
             }
         } else {
             imagepng($img_thumb, $dir . $filename);
@@ -233,7 +230,7 @@ class image extends \app\model\imageModel {
         } else {
             $this->error_msg = $GLOBALS['_LANG']['writting_failure'];
             $this->error_no = ERR_DIRECTORY_READONLY;
-            return false;
+            return "6";
         }
     }
 
@@ -424,6 +421,7 @@ class image extends \app\model\imageModel {
 
             case 'image/pjpeg':
             case 'image/jpeg':
+            case 'application/octet-stream':
             case 2:
                 if ('4.3' <= PHP_VERSION) {
                     return function_exists('imagecreatefromjpeg');
@@ -463,7 +461,7 @@ class image extends \app\model\imageModel {
         $filename = '';
 
         while (empty($filename)) {
-            $filename = cls_image::random_filename();
+            $filename = image::random_filename();
             if (file_exists($dir . $filename . '.jpg') || file_exists($dir . $filename . '.gif') || file_exists($dir . $filename . '.png')) {
                 $filename = '';
             }
