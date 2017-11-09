@@ -9,7 +9,7 @@ $product_number = (isset($_REQUEST["product_number"]) ? $base->get_intval($_REQU
 $product_price = (isset($_REQUEST["product_price"]) ? $base->get_intval($_REQUEST["product_price"]) : -1);
 $product_market_price = (isset($_REQUEST["product_market_price"]) ? $base->get_intval($_REQUEST["product_market_price"]) : -1);
 $product_warn_number = (isset($_REQUEST["product_warn_number"]) ? $base->get_intval($_REQUEST["product_warn_number"]) : -1);
-$val = array('product_id' => $product_id, 'goods_id' => $goods_id, 'goods_attr' => $goods_attr, 'product_sn' => $product_sn, 'bar_code' => $bar_code, 'product_number' => $product_number, 'product_price' => $product_price, 'product_market_price' => $product_market_price, 'product_warn_number' => $product_warn_number);
+$val = array('product_id' => $product_id, 'goods_id' => $goods_id, 'goods_attr' => $goods_attr, 'product_sn' => $product_sn, 'bar_code' => $bar_code, 'product_number' => $product_number, 'product_price' => $product_price, 'product_market_price' => $product_market_price, 'product_warn_number' => $product_warn_number, 'products_select' => $data);
 $products = new \app\controller\products($val);
 
 switch ($method) {
