@@ -134,6 +134,14 @@ $api_data = array(
             array('name' => '更新仓库地区信息', 'val' => 'dsc.warehouse.update.post'),
             array('name' => '删除仓库地区信息', 'val' => 'dsc.warehouse.del.post')
         )
+    ),
+    array(
+        'name' => '商品详情',
+        'cat' => 'products',
+        'list' => array(
+            array('name' => '插入商品详情信息', 'val' => 'gdw.products.insert.post'),
+            array('name' => '更新商品详情信息', 'val' => 'gdw.products.update.post')
+        )
     )
 );
 ?>
