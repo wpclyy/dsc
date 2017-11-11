@@ -158,9 +158,9 @@ abstract class goodsModel extends \app\func\common {
                 }
             }
 
-            $common_data = array('result' => empty($select) ? 'failure' : 'success', 'msg' => empty($select) ? $goodsLang['msg_failure']['failure'] : $goodsLang['msg_success']['success'], 'error' => empty($select) ? $goodsLang['msg_failure']['error'] : $goodsLang['msg_success']['error'], 'format' => $format);
+            $common_data = array('result' => empty($select) ? 'failure3' : 'success', 'msg' => empty($select) ? $goodsLang['msg_failure']['failure'] : $goodsLang['msg_success']['success'], 'error' => empty($select) ? $goodsLang['msg_failure']['error'] : $goodsLang['msg_success']['error'], 'format' => $format);
         } else {
-            $common_data = array('result' => 'failure', 'msg' => $goodsLang['where_failure']['failure'], 'error' => $goodsLang['where_failure']['error'], 'format' => $format);
+            $common_data = array('result' => 'failure4', 'msg' => $goodsLang['where_failure']['failure'], 'error' => $goodsLang['where_failure']['error'], 'format' => $format);
         }
 
         \app\func\common::common($common_data);
