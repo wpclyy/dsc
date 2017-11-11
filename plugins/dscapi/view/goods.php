@@ -39,6 +39,7 @@ switch ($method) {
         break;
 
     case 'dsc.goods.update.post':
+        
         $table = array('goods' => 'goods');
         $result = $goods->get_goods_update($table);
         exit($result);
