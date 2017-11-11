@@ -32,6 +32,8 @@ if ($app_key) {
     exit('密钥不能为空');
 }
 
+
+
 if (($format == 'json') && $data) {
     $data = stripslashes($data);
     $data = stripslashes($data);
@@ -41,7 +43,10 @@ if (($format == 'json') && $data) {
     $data = json_decode(json_encode(simplexml_load_string($data, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
 }
 
-$interface = array('goods', 'order', 'user', 'region', 'warehouse', 'attribute', 'category', 'brand');
+
+
+
+$interface = array('goods', 'order', 'user', 'region', 'warehouse', 'attribute', 'category', 'brand','products');
 $interface = $base->get_interface_file(dirname(__FILE__), $interface);
 
 foreach ($interface as $key => $row) {
@@ -64,7 +69,7 @@ if (in_array($method, $goods_action)) {
     $file_type = 'category';
 } else if (in_array($method, $brand_action)) {
     $file_type = 'brand';
-} else if (in_array($method, $brand_action)) {
+} else if (in_array($method, $products_action)) {
     $file_type = 'products';
 } else {
     exit('非法入口');
